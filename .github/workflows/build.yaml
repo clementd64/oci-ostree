@@ -12,7 +12,7 @@ jobs:
 
     container:
       image: quay.io/fedora-ostree-desktops/buildroot:latest
-      # options: --privileged
+      options: --privileged
 
     steps:
       - name: Checkout repository
