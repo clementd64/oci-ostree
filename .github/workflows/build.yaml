@@ -1,0 +1,32 @@
+name: build
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+jobs:
+  lockfile:
+    runs-on: ubuntu-latest
+
+    container:
+      image: ghcr.io/${{ github.repository }}/buildroot:latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Checkout base ostree config
+        run: git clone https://pagure.io/workstation-ostree-config.git --branch f39 --single-branch --depth 1
+
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build image
+        run: rpm-ostree compose image  --initialize-mode=if-not-exists --format=registry workstation-ostree-config/fedora-silverblue.yaml ghcr.io/${{ github.repository }}/silverblue:latest
+        working-directory: workstation-ostree-config

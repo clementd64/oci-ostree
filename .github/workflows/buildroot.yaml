@@ -1,9 +1,12 @@
 name: buildroot
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - 'main'
+    paths:
+      - 'buildroot/**'
 
 jobs:
   build:
