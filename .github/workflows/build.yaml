@@ -21,6 +21,13 @@ jobs:
       - name: Checkout base ostree config
         run: git clone https://pagure.io/workstation-ostree-config.git --branch f39 --single-branch --depth 1
 
+      # Repo not loaded relatively to the imported file
+      - name: Copy repo files
+        run: cp -r workstation-ostree-config/*.repo .
+
+      - name: Remove gnome-software
+        run: sed -i '/gnome-software/d' workstation-ostree-config/gnome-desktop-pkgs.yaml
+
       - name: Login to GitHub Container Registry
         run: skopeo login -u ${{ github.repository_owner }} -p ${{ secrets.GITHUB_TOKEN }} ghcr.io
 

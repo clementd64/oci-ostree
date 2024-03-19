@@ -1,0 +1,9 @@
+include: workstation-ostree-config/fedora-silverblue.yaml
+ref: clementd64/silverblue/39/${basearch}
+
+packages:
+  - moby-engine
+
+exclude-packages:
+  - gnome-software
+  - gnome-software-rpm-ostree
