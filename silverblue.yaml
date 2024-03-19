@@ -2,8 +2,13 @@ include: workstation-ostree-config/fedora-silverblue.yaml
 ref: clementd64/silverblue/39/${basearch}
 
 packages:
-  - moby-engine
+  - containerd.io
+  - docker-ce
+  - docker-ce-cli
 
 exclude-packages:
   - gnome-software
   - gnome-software-rpm-ostree
+
+repos:
+  - docker-ce-stable
