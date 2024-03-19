@@ -32,5 +32,4 @@ jobs:
         run: skopeo login -u ${{ github.repository_owner }} -p ${{ secrets.GITHUB_TOKEN }} ghcr.io
 
       - name: Build image
-        run: rpm-ostree compose image  --initialize-mode=if-not-exists --format=registry fedora-silverblue.yaml ghcr.io/${{ github.repository }}/silverblue:latest
-        working-directory: workstation-ostree-config
+        run: rpm-ostree compose image  --initialize-mode=if-not-exists --format=registry silverblue.yaml ghcr.io/${{ github.repository }}/silverblue:latest
