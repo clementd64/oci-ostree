@@ -7,7 +7,7 @@ on:
       - main
 
 jobs:
-  lockfile:
+  build:
     runs-on: ubuntu-latest
 
     container:
